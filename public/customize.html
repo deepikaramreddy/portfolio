@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customize Your Portfolio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fa;
+      padding: 40px;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="portfolioForm">
+    <h2>Fill Your Portfolio Details</h2>
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="text" id="role" placeholder="Your Role (e.g., Web Developer)" required />
+    <textarea id="bio" placeholder="Short Bio" required></textarea>
+    <textarea id="projects" placeholder="Projects (comma separated)" required></textarea>
+    <input type="text" id="linkedin" placeholder="LinkedIn URL" />
+    <input type="text" id="github" placeholder="GitHub URL" />
+    <label for="image">Upload Profile Picture:</label>
+    <input type="file" id="image" accept="image/*" required />
+    <button type="submit">Generate Portfolio</button>
+  </form>
+
+  <script>
+    document.getElementById('portfolioForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const reader = new FileReader();
+      const file = document.getElementById('image').files[0];
+
+      reader.onloadend = function () {
+        const data = {
+          name: document.getElementById('name').value,
+          role: document.getElementById('role').value,
+          bio: document.getElementById('bio').value,
+          projects: document.getElementById('projects').value.split(',').map(p => p.trim()),
+          linkedin: document.getElementById('linkedin').value,
+          github: document.getElementById('github').value,
+          image: reader.result
+        };
+
+        localStorage.setItem('portfolioData', JSON.stringify(data));
+        window.location.href = 'template4.html';
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        alert("Please upload a profile picture.");
+      }
+    });
+  </script>
+
+</body>
+</html>

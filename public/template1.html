@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .section {
+      margin-top: 2rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    a {
+      color: #2575fc;
+      text-decoration: none;
+    }
+    .contact a {
+      display: inline-block;
+      margin-right: 1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="name">Your Name</h1>
+    <h2 id="role">Your Role</h2>
+
+    <div class="section">
+      <h3>About Me</h3>
+      <p id="bio">Loading...</p>
+    </div>
+
+    <div class="section">
+      <h3>Projects</h3>
+      <ul id="projects"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Contact</h3>
+      <div class="contact">
+        <a id="linkedin" href="#" target="_blank">LinkedIn</a>
+        <a id="github" href="#" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem('portfolioData'));
+
+    if (data) {
+      document.getElementById('name').textContent = data.name;
+      document.getElementById('role').textContent = data.role;
+      document.getElementById('bio').textContent = data.bio;
+
+      const projectList = document.getElementById('projects');
+      const projectArray = data.projects.split(',').map(p => p.trim());
+      projectArray.forEach(project => {
+        const li = document.createElement('li');
+        li.textContent = project;
+        projectList.appendChild(li);
+      });
+
+      document.getElementById('linkedin').href = data.linkedin;
+      document.getElementById('github').href = data.github;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Portfolio Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">PortfolioGen</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Templates</a></li>
+        <li><a href="#">Customize</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <section class="hero">
+      <h1>Create Your Personal Portfolio Website</h1>
+      <p>Select a template, customize it, and generate your stunning portfolio — all in minutes!</p>
+      <a href="#templates" class="btn">Choose a Template</a>
+    </section>
+  </header>
+
+  <section id="templates" class="template-section">
+    <h2>Choose Your Template</h2>
+    <div class="template-grid">
+      <div class="template-card">
+        <img src="template1.jpg" alt="Template 1">
+        <h3>Classic Developer</h3>
+        <p>A clean, professional layout perfect for tech portfolios.</p>
+        <button onclick="selectTemplate('classic')">Use Template</button>
+      </div>
+      <div class="template-card">
+        <img src="template2.jpg" alt="Template 2">
+        <h3>Creative Designer</h3>
+        <p>Stylish and colorful for designers or creatives.</p>
+        <button onclick="selectTemplate('creative')">Use Template</button>
+      </div>
+      <div class="template-card">
+        <img src="template3.jpg" alt="Template 3">
+        <h3>Minimalist</h3>
+        <p>Sleek and simple, perfect for a modern look.</p>
+        <button onclick="selectTemplate('minimal')">Use Template</button>
+      </div>
+      <div class="template-card">
+  <img src="template4.jpg" alt="Template 4">
+  <h3>Modern Clean</h3>
+  <p>A visually appealing, well-structured modern portfolio layout.</p>
+  <button onclick="selectTemplate('template4')">Use Template</button>
+</div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 PortfolioGen. Built with ❤️ using Docker & Jenkins</p>
+  </footer>
+
+  <script>
+    function selectTemplate(template) {
+      window.location.href = `customize.html?template=${template}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Modern Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ece9e6, #ffffff);
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #2b2b2b;
+    }
+    a {
+      color: #0077b5;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="name"></h1>
+  <h3 id="title"></h3>
+  <section>
+    <h2>About</h2>
+    <p id="about"></p>
+  </section>
+  <section>
+    <h2>Projects</h2>
+    <ul id="projects"></ul>
+  </section>
+  <section>
+    <h2>Skills</h2>
+    <ul id="skills"></ul>
+  </section>
+  <section>
+    <h2>Contact</h2>
+    <p id="email"></p>
+  </section>
+  <script>
+    const data = JSON.parse(localStorage.getItem('portfolioData'));
+    document.getElementById('name').textContent = data.name;
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('about').textContent = data.about;
+    data.projects.split(',').forEach(p => {
+      const li = document.createElement('li');
+      li.textContent = p.trim();
+      document.getElementById('projects').appendChild(li);
+    });
+    data.skills.split(',').forEach(s => {
+      const li = document.createElement('li');
+      li.textContent = s.trim();
+      document.getElementById('skills').appendChild(li);
+    });
+    document.getElementById('email').textContent = data.email;
+  </script>
+</body>
+</html>

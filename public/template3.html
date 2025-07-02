@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorful Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #fdf6e3;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      padding: 30px;
+    }
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .container {
+      background: #fff8dc;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #d2691e;
+    }
+    a {
+      text-decoration: none;
+      color: #20b2aa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="avatar.png" alt="Profile Image" class="profile-img">
+    <h1 id="name"></h1>
+    <h2 id="title"></h2>
+    <p id="about"></p>
+    <h3>Projects</h3>
+    <ul id="projects"></ul>
+    <h3>Skills</h3>
+    <ul id="skills"></ul>
+    <p id="email"></p>
+  </div>
+  <script>
+    const data = JSON.parse(localStorage.getItem('portfolioData'));
+    document.getElementById('name').textContent = data.name;
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('about').textContent = data.about;
+    data.projects.split(',').forEach(p => {
+      const li = document.createElement('li');
+      li.textContent = p.trim();
+      document.getElementById('projects').appendChild(li);
+    });
+    data.skills.split(',').forEach(s => {
+      const li = document.createElement('li');
+      li.textContent = s.trim();
+      document.getElementById('skills').appendChild(li);
+    });
+    document.getElementById('email').textContent = data.email;
+  </script>
+</body>
+</html>

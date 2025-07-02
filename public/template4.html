@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Template</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #eef3f7;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .header {
+      margin-bottom: 40px;
+    }
+
+    .header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #007bff;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 34px;
+      color: #007bff;
+      margin: 10px 0;
+    }
+
+    p#role {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 0;
+    }
+
+    section {
+      margin: 40px 0;
+      text-align: left;
+    }
+
+    section h2 {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    #bio {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    ul#projectsList {
+      padding-left: 20px;
+      font-size: 16px;
+    }
+
+    ul#projectsList li {
+      margin-bottom: 8px;
+    }
+
+    .socials {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .socials a {
+      display: inline-block;
+      margin: 10px 10px;
+      padding: 10px 25px;
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .socials a:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <img id="profileImage" src="" alt="Profile Picture"/>
+      <h1 id="name"></h1>
+      <p id="role"></p>
+    </div>
+
+    <section>
+      <h2>About Me</h2>
+      <p id="bio"></p>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul id="projectsList"></ul>
+    </section>
+
+    <section>
+      <h2>Find Me Online</h2>
+      <div class="socials">
+        <a id="linkedin" href="#" target="_blank">LinkedIn</a>
+        <a id="github" href="#" target="_blank">GitHub</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem('portfolioData'));
+
+    if (data) {
+      document.getElementById('name').textContent = data.name;
+      document.getElementById('role').textContent = data.role;
+      document.getElementById('bio').textContent = data.bio;
+
+      const projectsList = document.getElementById('projectsList');
+      data.projects.forEach(project => {
+        const li = document.createElement('li');
+        li.textContent = project;
+        projectsList.appendChild(li);
+      });
+
+      if (data.linkedin) {
+        document.getElementById('linkedin').href = data.linkedin;
+      }
+      if (data.github) {
+        document.getElementById('github').href = data.github;
+      }
+      if (data.image) {
+        document.getElementById('profileImage').src = data.image;
+      }
+    }
+  </script>
+
+</body>
+</html>
